@@ -5,6 +5,8 @@ simulate navigation for ece3400 lab 4/final
 by Peter Wade (pfw44)
 11/5/21
 
+I make no guarantees that this works perfectly.
+
 arguments to call: 'step' makes it so that you pring everthing out
 
 need the nav function to take distance inputs, and output numbers corresponding to operations (move, turn, etc)
