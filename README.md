@@ -1,9 +1,9 @@
 # ECE3400-maze-simulation
 To test out navigation algorithms for lab4/the final
 
-#simulate navigation for ece3400 lab 4/final
-# by Peter Wade (pfw44)
-# 11/5/21
+simulate navigation for ece3400 lab 4/final
+by Peter Wade (pfw44)
+11/5/21
 
 arguments to call: 'step' makes it so that you pring everthing out
 
@@ -52,9 +52,7 @@ there are four ways to call this program:
 4. python nav_sim.py step <True/False> random <n>
 -- this will cause it to try n random mazes
 
-see this stackoverflow post for info about how to produce a file from your C code
-	
-https://stackoverflow.com/questions/145270/calling-c-c-from-python
+see this stackoverflow post for info about how to produce a file from your C code: https://stackoverflow.com/questions/145270/calling-c-c-from-python
 	
 arduino code should just be C code in general, so as long as you dont have arduino specific functions, you should just copy the function into a C file and compile
 	
@@ -62,9 +60,7 @@ this code assumes your final shared library file will be called "nav_code_lib.so
 	
 and will be in the same directory as this python file
 	
-This has more details on compiling with gcc for this type of thing
-	
-cprogramming.com/tutorial/shared-libraries-linux-gcc.html
+This has more details on compiling with gcc for this type of thing: cprogramming.com/tutorial/shared-libraries-linux-gcc.html
 
 commands I used to compile the C program:
 	
