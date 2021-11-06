@@ -53,8 +53,8 @@ there are four ways to call this program:
 3. python nav_sim.py step <True/False> random
 -- the step <True/False> part has the same action as above
 -- this will cause it to try one random maze
-4. python nav_sim.py step <True/False> random <n>
--- this will cause it to try n random mazes
+4. python nav_sim.py step <True/False> random <number>
+-- this will cause it to try number random mazes
 
 see this stackoverflow post for info about how to produce a file from your C code: https://stackoverflow.com/questions/145270/calling-c-c-from-python
 	
