@@ -7,6 +7,8 @@ by Peter Wade (pfw44)
 
 I make no guarantees that this works perfectly.
 
+Note that the library I use to load the C file requires different syntax for windows and mac. This code was tested on a mac, but I will try to include the windows syntax commented out, but I have not tested it on a windows machine.
+
 arguments to call: 'step' makes it so that you pring everthing out
 
 need the nav function to take distance inputs, and output numbers corresponding to operations (move, turn, etc)
