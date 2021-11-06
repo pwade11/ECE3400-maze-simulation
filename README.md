@@ -13,15 +13,25 @@ format for data arrays:
 even number indecies are barier stuff, odd numbers are valid spaces
 
 grid = 	[[	"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" ],
+
 	[	"|", "0", "|", "0", "|", "0", "|", "0", "|", "0", "|"],
+	
 	[	"|", "-", "-", "-", "-", "-", "-", "-", "-", "-", "|" ],
+	
 	[	"|", "0", "|", "0", "|", "0", "|", "0", "|", "0", "|"],
+	
 	[	"|", "-", "-", "-", "-", "-", "-", "-", "-", "-", "|" ],
+	
 	[	"|", "0", "|", "0", "|", "0", "|", "0", "|", "0", "|"],
+	
 	[	"|", "-", "-", "-", "-", "-", "-", "-", "-", "-", "|" ],
+	
 	[	"|", "0", "|", "0", "|", "0", "|", "0", "|", "0", "|"],
+	
 	[	"|", "-", "-", "-", "-", "-", "-", "-", "-", "-", "|" ],
+	
 	[	"|", "0", "|", "0", "|", "0", "|", "0", "|", "^", "|"],
+	
 	[	"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" ],]
 
 1 means explored, empty barier area means no barier, arrow means robot, direction indicates direction
@@ -41,12 +51,17 @@ there are four ways to call this program:
 -- this will cause it to try n random mazes
 
 see this stackoverflow post for info about how to produce a file from your C code
+	
 https://stackoverflow.com/questions/145270/calling-c-c-from-python
-arduino code should just be C code in general, so as long as you dont have arduino specific functions, 
-you should just copy the function into a C file and compile
+	
+arduino code should just be C code in general, so as long as you dont have arduino specific functions, you should just copy the function into a C file and compile
+	
 this code assumes your final shared library file will be called "nav_code_lib.so"
+	
 and will be in the same directory as this python file
+	
 This has more details on compiling with gcc for this type of thing
+	
 cprogramming.com/tutorial/shared-libraries-linux-gcc.html
 
 commands I used to compile the C program:
