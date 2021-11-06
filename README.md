@@ -67,16 +67,23 @@ This has more details on compiling with gcc for this type of thing
 cprogramming.com/tutorial/shared-libraries-linux-gcc.html
 
 commands I used to compile the C program:
+	
 gcc -c -Wall -Werror -fpic nav_test_test.c
+	
 gcc -shared -o -nav_code_lib.so nav_test_test.o
 
 
 you should set some values so that they are realistic and will work with your code, specifically:
+	
 distempyblock - distance measured for a full empty block (15 inches)
+	
 distemptywall - distance measured for an empty wall width (1.5 inches I think)
+	
 distrobotside - distance measured to the side when the robot is centered in one block
+	
 distrobotfront - distrance to the front when the robot is centered in a block
 
 
 I am also including a example c file that shows what you need to do with your arduino code. Just copy the navigation part into a c file and make a header. 
+	
 I also included one example maze csv file
