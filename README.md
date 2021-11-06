@@ -13,6 +13,7 @@ format for data arrays:
 even number indecies are barier stuff, odd numbers are valid spaces
 
 grid = 	
+
 	[[	"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" ],
 
 	[	"|", "0", "|", "0", "|", "0", "|", "0", "|", "0", "|"],
