@@ -12,7 +12,8 @@ need the nav function to take distance inputs, and output numbers corresponding 
 format for data arrays:
 even number indecies are barier stuff, odd numbers are valid spaces
 
-grid = 	[[	"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" ],
+grid = 	
+	[[	"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" ],
 
 	[	"|", "0", "|", "0", "|", "0", "|", "0", "|", "0", "|"],
 	
