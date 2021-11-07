@@ -1,7 +1,12 @@
 import sys
-from ctypes import cdll
+try:
+	from ctypes import cdll, windll
+except:
+	from ctypes import cdll
+
 import os
 import numpy as np
+import platform
 #simulate navigation for ece3400 lab 4/final
 # by Peter Wade (pfw44)
 # 11/5/21
@@ -12,7 +17,7 @@ import numpy as np
 #This code was tested on a mac, but I will try to include the windows syntax commented out, 
 #but I have not tested it on a windows machine.
 
-#arguments to call: 'step' makes it so that you pring everthing out
+#arguments to call: 'step' makes it so that you print everthing out
 
 #need the nav function to take distance inputs, and output numbers corresponding to operations (move, turn, etc)
 
@@ -55,6 +60,8 @@ import numpy as np
 #and will be in the same directory as this python file
 #This has more details on compiling with gcc for this type of thing
 #cprogramming.com/tutorial/shared-libraries-linux-gcc.html
+#Here is some details for windows systems:
+#https://code.visualstudio.com/docs/cpp/config-mingw
 
 #commands I used to compile the C program:
 #gcc -c -Wall -Werror -fpic nav_test_test.c
@@ -68,6 +75,9 @@ import numpy as np
 #distrobotfront - distrance to the front when the robot is centered in a block
 
 def dist_west():
+	"""
+	Returns the distence to the west 
+	"""
 	intr_row = grid[roboty]
 	selected_pos = robotx-1
 	add_dist = 0
@@ -78,6 +88,9 @@ def dist_west():
 	return(add_dist)
 
 def dist_east():
+	"""
+	Returns the distence to the east 
+	"""
 	intr_row = grid[roboty]
 	selected_pos = robotx+1
 	add_dist = 0
@@ -88,6 +101,9 @@ def dist_east():
 	return(add_dist)
 
 def dist_south():
+	"""
+	Returns the distence to the south 
+	"""
 	intr_col = []
 	for i in range(len(grid)):
 		intr_col.append(grid[i][robotx])
@@ -99,6 +115,9 @@ def dist_south():
 	return(add_dist)
 
 def dist_north():
+	"""
+	Returns the distence to the north 
+	"""
 	intr_col = []
 	for i in range(len(grid)):
 		intr_col.append(grid[i][robotx])
@@ -110,7 +129,9 @@ def dist_north():
 	return(add_dist)
 
 def gen_distances():
-	#determine the distances to send to the robot
+	"""
+	determine the distances to send to the robot
+	"""
 	if(robot_dir == 0):
 		#if facing north
 		leftdist = distrobotside + dist_west()
@@ -135,34 +156,45 @@ def gen_distances():
 	return (leftdist, forwarddist, rightdist)
 
 def check_north():
-	#check if can move to north
+	"""
+	check if can move to north
+	"""
 	if(grid[roboty-1][robotx] == "-"):
 		return False
 	else:
 		return True
 
 def check_south():
-	#check if can move to the south
+	"""
+	check if can move to the south
+	"""
 	if(grid[roboty+1][robotx] == "-"):
 		return False
 	else:
 		return True
 
 def check_east():
-	#check if can move east
+	"""
+	check if can move east
+	"""
 	if(grid[roboty][robotx+1] == "|"):
 		return False
 	else:
 		return True
 
 def check_west():
-	#check if can move west
+	"""
+	check if can move west
+	"""
 	if(grid[roboty][robotx-1] == "|"):
 		return False
 	else:
 		return True
 
 def set_dir_arrow():
+	"""
+	set the direction the arrow is facing
+	"""
 	global robot_dir
 	global roboty
 	global robotx
@@ -180,7 +212,9 @@ def set_dir_arrow():
 		raise Exception("invalid direction")
 
 def check_complete():
-	#check all the locations, and see that all possible areas are explored
+	"""
+	check all the locations, and see that all possible areas are explored
+	"""
 	for i in range(5):
 		for j in range(5):
 			if(grid[2*i+1][2*j+1] == "0"):
@@ -192,6 +226,9 @@ def check_complete():
 	return 1
 
 def print_grid():
+	"""
+	print the grid
+	"""
 	for i in range(len(grid)):
 		printstr = ""
 		for x in range(len(grid[i])):
@@ -202,6 +239,9 @@ def print_grid():
 	print("\n")
 
 def moveloop(nav_func):
+	"""
+	the main loop for the func
+	"""
 	global robot_dir
 	global roboty
 	global robotx
@@ -286,8 +326,10 @@ def moveloop(nav_func):
 	return 0
 
 def test_nav_func():
-	#this is to ensure that this code is functional, nothing else
-	#should not be used if you are testing your own function
+	"""
+	this is to ensure that this code is functional, nothing else
+	should not be used if you are testing your own function
+	"""
 	global grid 
 	#grid for test 1
 	global testing
@@ -428,7 +470,9 @@ def test_nav_func():
 	run_program(grid,testing,test_4,1)
 
 def test_1(ld,fd,rd):
-	#check that this code is functional
+	"""
+	check that this code is functional
+	"""
 	actions =[4]
 	global testing
 	testing += 1
@@ -436,7 +480,9 @@ def test_1(ld,fd,rd):
 	return(actions[testing-2])
 
 def test_2(ld,fd,rd):
-	#check that this code is functional
+	"""
+	check that this code is functional
+	"""
 	actions =[0,0,0,0,4]
 	global testing
 	testing += 1
@@ -444,8 +490,10 @@ def test_2(ld,fd,rd):
 	return(actions[testing-2])
 
 def test_3(ld,fd,rd):
-	#check that this code is functional
-	#test illegal move
+	"""
+	check that this code is functional
+	test illegal move
+	"""
 	actions =[0,0,0,0,0,4]
 	global testing
 	testing += 1
@@ -453,8 +501,10 @@ def test_3(ld,fd,rd):
 	return(actions[testing-2])
 
 def test_4(ld,fd,rd):
-	#check that this code is functional
-	#test more complex movement patterns
+	"""
+	check that this code is functional
+	test more complex movement patterns
+	"""
 	actions =[0,0,0,0,3,0,0,1,0,1,0,0,2,0,2,0,0,0,0,2,0,2,0,0,4]
 	global testing
 	testing += 1
@@ -462,8 +512,10 @@ def test_4(ld,fd,rd):
 	return(actions[testing-2])
 
 def test_5(ld, fd,rd):
-	#check that this code is functional
-	#test thinking it is done too early
+	"""
+	check that this code is functional
+	test thinking it is done too early
+	"""
 	actions =[0,0,0,0,3,0,0,1,0,1,0,0,2,0,2,0,0,0,0,4]
 	global testing
 	testing += 1
@@ -471,8 +523,10 @@ def test_5(ld, fd,rd):
 	return(actions[testing-2])
 
 def test_6(ld,fd,rd):
-	#check that this code is functional
-	#test illegal move to the side
+	"""
+	check that this code is functional
+	test illegal move to the side
+	"""
 	actions =[0,0,0,1,0,4]
 	global testing
 	testing += 1
@@ -480,14 +534,19 @@ def test_6(ld,fd,rd):
 	return(actions[testing-2])
 
 def run_program(grid, testing, test_func, step):
+	"""
+	load the nav function, and execute the main loop
+	"""
 	if(testing):
 		nav_func = test_func
 	else:
 		#import the C (arduino) program for navigation:
 		#based on this: https://stackoverflow.com/questions/145270/calling-c-c-from-python
-		lib = cdll.LoadLibrary('./nav_code_lib.so')
-		#for windows computers (I think):
-		#lib = windll.LoadLibrary('./nav_code_lib.so')
+
+		if(platform.system() == "Windows"):
+			lib = windll.LoadLibrary('./nav_code_lib.so')
+		else:
+			lib = cdll.LoadLibrary('./nav_code_lib.so')
 		nav_func = lib.nav_func
 		#rename it so easier to deal with
 
@@ -507,7 +566,9 @@ def run_program(grid, testing, test_func, step):
 		print("found all")
 
 def load_grid_files():
-	#store the grids as csv files, and load them
+	"""
+	store the grids as csv files, and load them
+	"""
 	gridlist = []
 	for filename in os.listdir(GRID_DIRECTORY):
 		if(filename.endswith(".csv")):
@@ -519,7 +580,9 @@ def load_grid_files():
 	return gridlist
 
 def sweep_through_runs():
-	#test the navigation code
+	"""
+	test the navigation code
+	"""
 	global grid 
 	global testing
 	global robotx
@@ -538,7 +601,9 @@ def sweep_through_runs():
 		run_program(grid,0,None,step)
 
 def gen_rand_maze():
-	#make a random grid
+	"""
+	make a random grid
+	"""
 	curgrid = [["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" ],
 	[	"|", "0", "|", "0", "|", "0", "|", "0", "|", "0", "|"],
 	[	"|", "-", "-", "-", "-", "-", "-", "-", "-", "-", "|" ],
@@ -565,6 +630,9 @@ def gen_rand_maze():
 	return(curgrid)
 
 def random_maze_sweep(num_trials):
+	"""
+	try a number of random mazes
+	"""
 	global grid 
 	global testing
 	global robotx
@@ -636,6 +704,3 @@ elif(len(sys.argv) == 4 or len(sys.argv) == 5):
 		#if not random, assume that they are giving a directory of files
 else:
 	raise Exception("Invalid command line entries")
-
-
-
