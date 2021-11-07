@@ -7,6 +7,8 @@ by Peter Wade (pfw44)
 
 I make no guarantees that this works perfectly.
 
+I have not yet tested it with a full navigation code, so one concern I still have is that it may not properly keep global things such as systems to indicate which direction has been explored within the arduino code. If it is an issue, I will try and fix it when my group gets to that point.
+
 Note that the library I use to load the C file requires different syntax for windows and mac. This code was tested on a mac, but I will try to include the windows syntax commented out, but I have not tested it on a windows machine.
 
 arguments to call: 'step' makes it so that you print everthing out
